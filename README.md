@@ -4,7 +4,7 @@ cpp and roguelike
 
 yes
 
-run main, it's an executable. alternatively you can use the makefile to build it.
+build it by running `make`. this requires `ncurses` to be installed on your system
 
 things that have been implemented:
 - player movement
