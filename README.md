@@ -21,4 +21,5 @@ things yet to be implemented:
   - attack
   - can do more later.
 - actually make a proper gui lol
+
 and more...
