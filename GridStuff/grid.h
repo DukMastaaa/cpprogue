@@ -11,7 +11,7 @@ class Grid {
         std::vector<std::vector<Tile>> grid;
 
     public:
-        Grid(int width, int height);
+        Grid(int width = 1, int height = 1);
         std::vector<std::vector<Tile>> getGrid();
         int getWidth();
         int getHeight();

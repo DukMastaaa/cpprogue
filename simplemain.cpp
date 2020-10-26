@@ -3,6 +3,7 @@
 #include "PlayerStuff/player.h"
 #include "GridStuff/tile.h"
 #include "colourconst.h"
+#include "gamemodel.h"
 
 void displayGrid(WINDOW* gridWindow, Grid* grid, Player* player, WINDOW* debugWindow) {
     short thisColourPair;
@@ -22,8 +23,7 @@ void displayGrid(WINDOW* gridWindow, Grid* grid, Player* player, WINDOW* debugWi
     }
 
     mvwaddch(gridWindow, player->getY(), player->getX(), '@');
-    wclear(debugWindow);
-    wprintw(debugWindow, "y%d x%d", player->getY(), player->getX());
+    mvwprintw(debugWindow, 0, 0, "y%d x%d", player->getY(), player->getX());
 }
 
 int main() {
@@ -39,28 +39,28 @@ int main() {
     }
 
     startColours();
-    clear();
 
     int gridWidth = 10;
     int gridHeight = 8;
     WINDOW* gridWindow = newwin(gridHeight, gridWidth, 5, 5);
     WINDOW* debugWindow = newwin(1, 10, 1, 1);
 
-    Grid grid = Grid(gridWidth, gridHeight);
-    Player player = Player(gridWidth, gridHeight);
-
+    GameModel model = GameModel(gridWidth, gridHeight);
     char wasd;
 
     while (true) {
-        displayGrid(gridWindow, &grid, &player, debugWindow);
-        wrefresh(gridWindow);
-        wrefresh(debugWindow);
+        displayGrid(gridWindow, model.getGrid(), model.getPlayer(), debugWindow);
+        
+        wnoutrefresh(gridWindow);
+        wnoutrefresh(debugWindow);
+        doupdate();  // done to avoid screen flickering on update
+
         wasd = wgetch(gridWindow);
 
         if (wasd == 'q') {
             break;
         }
-        player.move(wasd);
+        model.movePlayer(wasd);
     }
 
     endwin();

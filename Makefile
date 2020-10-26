@@ -1,5 +1,5 @@
-main: makeobj/simplemain.o makeobj/grid.o makeobj/player.o makeobj/tiletypes.o makeobj/colourconst.o makeobj/tile.o
-	g++ makeobj/simplemain.o makeobj/tiletypes.o makeobj/colourconst.o makeobj/tile.o makeobj/grid.o makeobj/player.o -lncurses -o main
+main: makeobj/simplemain.o makeobj/grid.o makeobj/player.o makeobj/tiletypes.o makeobj/colourconst.o makeobj/tile.o makeobj/gamemodel.o
+	g++ makeobj/simplemain.o makeobj/tiletypes.o makeobj/colourconst.o makeobj/tile.o makeobj/grid.o makeobj/player.o makeobj/gamemodel.o -lncurses -o main
 
 makeobj/simplemain.o: simplemain.cpp
 	g++ -c simplemain.cpp
@@ -24,6 +24,10 @@ makeobj/player.o: PlayerStuff/player.cpp PlayerStuff/player.h
 makeobj/colourconst.o: colourconst.cpp colourconst.h
 	g++ -c colourconst.cpp
 	mv colourconst.o makeobj
+
+makeobj/gamemodel.o: gamemodel.cpp gamemodel.h GridStuff/grid.cpp GridStuff/grid.h PlayerStuff/player.cpp PlayerStuff/player.h
+	g++ -c gamemodel.cpp GridStuff/grid.cpp PlayerStuff/player.cpp
+	mv gamemodel.o makeobj
 
 clean:
 	rm makeobj/*.o
