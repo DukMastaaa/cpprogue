@@ -1,4 +1,4 @@
-# cpprogue
+# cpprogue (archived, abandoned)
 
 **Archive notice:** this repository has been archived because the project turned out to be way
 too ambitious and there are many design flaws. Development will most likely not continue.
